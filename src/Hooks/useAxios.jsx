@@ -29,8 +29,8 @@ export default function useAxios() {
                 auth: token
             }
         }).then((response) => {
-            console.log(response.data)
-            setRestaurants(response)
+            console.log(response.data.restaurants)
+            setRestaurants(response.data.restaurants)
         }).catch((error) => {
             console.log(error)
         })
