@@ -10,6 +10,19 @@ export default function Home(props) {
     return (
         <main>
             Home
+
+            {props.restaurants.length > 0 ?
+                <div>
+                    {props.restaurants.map((restaurants) => {
+                        return (
+                            <div>
+                                {restaurants.name}
+                            </div>
+                        )
+                    })}
+                </div> :
+                undefined
+            }
         </main>
     )
 }
