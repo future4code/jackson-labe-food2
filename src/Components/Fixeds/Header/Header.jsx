@@ -5,7 +5,7 @@ import { Header } from './style';
 export default function Header() {
   return (
   <Header>
-    <img src={goBack} alt='Voltar'/>
+    <img onClick={props.clickGoBack} src={goBack} alt='Voltar'/>
     <div>
       <p>{props.titleHeader}</p>
     </div>
