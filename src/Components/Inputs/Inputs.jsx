@@ -10,8 +10,8 @@ export default function Inputs(props) {
             placeholder={props.placeholder}
             type={props.type}
             autoComplete={props.autoComplete}
-            required
             autoFocus
+            required
         />
     )
 }
