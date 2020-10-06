@@ -1,9 +1,8 @@
-import React from 'react'
+import React from 'react';
+import { Button } from './style';
 
-export default function Red() {
+export default function Red(props) {
     return (
-        <main>
-
-        </main>
+        <Button onClick={props.onClick}>{props.nameButton}</Button>
     )
 }
