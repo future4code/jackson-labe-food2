@@ -4,7 +4,7 @@ import Cart from '../Screen/Cart/Cart'
 import Home from '../Screen/Home/Home'
 import Restaurant from '../Screen/Restaurant/Restaurant'
 import Search from '../Screen/Search/Search'
-import Login from '../Screen/SignIn/Login/Login'
+import LoginPage from '../Screen/SignIn/Login/LoginPage'
 import SignUpAddress from '../Screen/SignIn/SignUp/SignUpAddress'
 import SignUpUser from '../Screen/SignIn/SignUp/SignUpUser'
 import EditAddress from '../Screen/User/EditAddress/EditAddress'
@@ -31,7 +31,7 @@ export default function Router(props) {
 
             <Route exact path="/login">
                 {/* Tela de login */}
-                <Login />
+                <LoginPage setButtonName={props.setButtonName} />
             </Route>
 
             <Route exact path="/cadastro">
