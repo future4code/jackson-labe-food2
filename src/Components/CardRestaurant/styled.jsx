@@ -5,7 +5,7 @@ width: 20.5rem;
 height: 11.75rem;
 border-radius: 8px;
 border: solid 1px #b8b8b8;
-margin-bottom: 0.5rem;
+margin: 0.532rem auto;
 font-family: arial;
 cursor: pointer;
 > img {
