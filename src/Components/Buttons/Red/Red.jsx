@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from './style';
+import { Button } from './styled';
 
 export default function Red(props) {
     return (

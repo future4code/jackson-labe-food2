@@ -20,4 +20,12 @@ export const Header = styled.header`
       font-weight: 600;
     }
   }
+  span{
+      width: 50%;
+      margin: 0 auto;
+      text-align: center;
+      p {
+        font-weight: 600;
+      }
+    }
 `
