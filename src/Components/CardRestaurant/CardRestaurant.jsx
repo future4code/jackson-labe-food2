@@ -1,5 +1,5 @@
 import React from 'react';
-import { CardContainer } from './styled';
+import { CardContainer, SpanMin, SpanShipping } from './styled';
 
 export default function CardRestaurant(props) {
 
