@@ -1,18 +1,19 @@
 import React from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import useAxios from '../../Hooks/useAxios'
-import Router from '../../Route/Router'
+import Router from '../../Router/Router'
 import Footer from '../Fixeds/Footer/Footer'
-import Header from '../Fixeds/Header/Header'
+import NavBar from '../Fixeds/Header/NavBar'
+
 
 export default function AppContainer() {
     const { getProfile, profile, getRestaurants, restaurants, getActiveOrder, activeOrder, getOrderHistory, orderHistory } = useAxios()
     return (
         <main>
             <BrowserRouter>
-                <header>
-                    <Header />
-                </header>
+                {/* <header>
+                    <NavBar />
+                </header> */}
 
                 <div>
                     <Router

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Input } from './style';
+import { Input } from './styled';
 
 export default function Inputs(props) {
     return (
@@ -10,7 +10,8 @@ export default function Inputs(props) {
             placeholder={props.placeholder}
             type={props.type}
             autoComplete={props.autoComplete}
-            autoFocus
+            autoFocus={props.autofocus}
+            pattern={props.pattern}
             required
         />
     )

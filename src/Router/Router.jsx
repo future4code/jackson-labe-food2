@@ -61,7 +61,10 @@ export default function Router(props) {
 
             <Route exact path="/usuario/editar/:userId">
                 {/* Tela de edição das infos do usuario */}
-                <EditUser />
+                <EditUser
+                    getProfile={props.getProfile}
+                    profile={props.profile}
+                />
             </Route>
 
             <Route exact path="/usuario/editar/endereco">
