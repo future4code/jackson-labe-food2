@@ -57,7 +57,7 @@ export default function EditUser(props) {
                         value={form.value}
                         onChange={handleForm}
                         placeholder={props.profile.name}
-                        autocomplete={props.profile.name}
+                        autoComplete={props.profile.name}
                         autofocus={false}
                         required
                     />
@@ -76,7 +76,10 @@ export default function EditUser(props) {
                         value={form.value}
                         onChange={handleForm}
                         placeholder={props.profile.cpf}
+                        autoComplete="on"
                         autofocus={false}
+                        pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"
+                        dataMask="000.000.000-00"
                         required
                     />
                     <Red

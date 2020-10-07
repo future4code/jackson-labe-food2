@@ -1,44 +1,69 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
+import Red from '../../../Components/Buttons/Red/Red'
 import Inputs from '../../../Components/Inputs/Inputs'
+import useAxios from '../../../Hooks/useAxios'
 import useForm from '../../../Hooks/useForm'
+import hide from '../../../Assets/Imgs/hide.svg'
+import show from '../../../Assets/Imgs/show.svg'
+import { ShowPass } from './styled'
 
 export default function LoginForm(props) {
+    const [type, setType] = React.useState('password')
+    const { login } = useAxios()
     const history = useHistory()
-    const [form, onChange] = useForm({ email: '', password: '' })
+    const { form, onChange, resetState } = useForm({ email: '', password: '' })
 
-    const onClickLogin = (event) => {
+    const handleOnChange = (event) => {
+        const { name, value } = event.target
+        onChange(name, value)
+    }
+
+    const handleSubmission = (event) => {
         event.preventDefault()
-        const element = document.getElementById('login_form')
-        const isValid = element.checkValidity()
-        element.reportValidity()
-        if (isValid) {
-            // login(form, history, props.setButtonName)
-        }
+        login(form, history)
+        resetState()
+    }
+
+
+
+    const showHide = (event) => {
+        event.preventDefault()
+        event.stopPropagation()
+        setType(type === 'input' ? 'password' : 'input')
     }
 
     return (
         <main>
-            <Inputs
-                name={'email'}
-                value={''}
-                onChange={'null'}
-                placeholder={'Email'}
-                type={'email'}
-                autoComplete={'email'}
-                required
-                autoFocus
-            />
+            <form onSubmit={handleSubmission}>
+                <Inputs
+                    name='email'
+                    value={form.email}
+                    onChange={handleOnChange}
+                    placeholder={'email@email.com'}
+                    type='email'
+                    autoComplete={'email'}
+                    required
+                    autoFocus
+                />
 
-            <Inputs
-                name={'password'}
-                value={''}
-                onChange={'null'}
-                placeholder={'Senha'}
-                type={'password'}
-                autoComplete={'password'}
-                required
-            />
+                <Inputs
+                    name='password'
+                    value={form.password}
+                    onChange={handleOnChange}
+                    placeholder={'Minimo de 6 caracteres'}
+                    type={type}
+                    autoComplete={'password'}
+                    required
+                />
+                <ShowPass onClick={showHide}>
+                    {type === 'input' ?
+                        <img src={hide} alt="" /> : <img src={show} alt="" />}
+                </ShowPass>
+                <Red
+                    nameButton="Entrar"
+                />
+            </form>
         </main>
     )
 }

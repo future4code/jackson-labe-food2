@@ -11,12 +11,12 @@ export default function useAxios() {
     // Método de login e cadastro
     const baseUrl = "https://us-central1-missao-newton.cloudfunctions.net/fourFoodB"
 
-    const login = (body, history, setButtonName) => {
+    const login = (body, history) => {
         axios.post(`${baseUrl}/login`, body)
             .then((response) => {
                 localStorage.setItem('token', response.data.token)
+                console.log(response)
                 goToHome(history)
-                setButtonName('Logout')
             })
             .catch((error) => {
                 console.log(error)
@@ -24,12 +24,11 @@ export default function useAxios() {
             })
     }
 
-    const signUpUser = (body, history, setButtonName) => {
+    const signUpUser = (body, history) => {
         axios.post(`${baseUrl}/signup`, body)
             .then((response) => {
                 localStorage.setItem('token', response.data.token)
-                goToHome(history)
-                setButtonName('Logout')
+                // goToHome(history)
             })
             .catch((error) => {
                 console.log(error)
@@ -37,12 +36,16 @@ export default function useAxios() {
             })
     }
 
-    const addAddress = (body, history, setButtonName) => {
-        axios.post(`${baseUrl}/address`, body)
+    const addAddress = (body, history) => {
+        axios.put(`${baseUrl}/address`, body, {
+            headers: {
+                auth: token
+            }
+        })
             .then((response) => {
                 localStorage.setItem('token', response.data.token)
                 goToHome(history)
-                setButtonName('Logout')
+                console.log(response)
             })
             .catch((error) => {
                 console.log(error)
@@ -52,7 +55,7 @@ export default function useAxios() {
 
 
     // será substituido por - - - const token = window.localStorage.getItem("token")
-    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlBXcEhOWERScWtMRndtTllkTUFNIiwibmFtZSI6IkJhbmFuaW5oYSBDb20gQcOnYWkiLCJlbWFpbCI6IkJhbmFuaW5oYUAxMi5jb20iLCJjcGYiOiIxNDMuOTU3LjI1Ni05NyIsImhhc0FkZHJlc3MiOnRydWUsImFkZHJlc3MiOiJSLiBMb29waW5obyBCcmF6LCBpbmZpbml0ZSwgMDAwIC0gVmlsYSBOLiBpbmZpbml0byBkbyBwcmV0w6lyaXRvIiwiaWF0IjoxNjAxOTM3ODgxfQ.m21po06KvqeHnxC7T6OR9Q8BVdfoO4MIGjntMtfXRkU'
+    const token = window.localStorage.getItem('token')
 
     const getProfile = () => {
         axios.get('https://us-central1-missao-newton.cloudfunctions.net/fourFoodB/profile', {
@@ -104,5 +107,5 @@ export default function useAxios() {
             console.log(error)
         })
     }
-    return { getProfile, profile, getRestaurants, restaurants, getActiveOrder, activeOrder, getOrderHistory, orderHistory }
+    return { login, signUpUser, addAddress, getProfile, profile, getRestaurants, restaurants, getActiveOrder, activeOrder, getOrderHistory, orderHistory }
 }

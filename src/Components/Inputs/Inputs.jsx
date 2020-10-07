@@ -11,6 +11,7 @@ export default function Inputs(props) {
             type={props.type}
             autoComplete={props.autoComplete}
             autoFocus={props.autofocus}
+            data-mask={props.dataMask}
             pattern={props.pattern}
             required
         />

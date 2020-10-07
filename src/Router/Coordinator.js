@@ -7,7 +7,7 @@ export const goToSignUp = (history) => {
 }
 
 export const goToHome = (history) => {
-    history.push('/home')
+    history.push('/')
 }
 
 export const goToAddress = (history, id) => {
@@ -36,4 +36,8 @@ export const goToEditAddress = (history, id) => {
 
 export const goToCart = (history, id) => {
     history.push(`/carrinho`)
+}
+
+export const goToBack = (history) => {
+    history.goBack()
 }
