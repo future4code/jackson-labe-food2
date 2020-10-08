@@ -1,8 +1,7 @@
 import React from 'react'
 import App from '../../App'
 import useLoader from '../../Hooks/useLoader'
-import { ImgIf, ImgU, ImgT, ImgRe, Span, ImgArrow, ImgTitle, Main } from './styled'
-import logoTitle from '../../Assets/Imgs/logoTitle.png'
+import { ImgIf, ImgU, ImgT, ImgRe, Span, ImgArrow, Main } from './styled'
 import iF from '../../Assets/Imgs/if.png'
 import u from '../../Assets/Imgs/u.png'
 import t from '../../Assets/Imgs/t.png'
@@ -24,10 +23,7 @@ export default function Loader() {
                     <ImgRe src={re} alt="" srcset={re} />
                 </Span>
                 <ImgArrow src={logoArrow} alt="" srcset={logoArrow} />
-                <ImgTitle src={logoTitle} alt="" srcset={logoTitle} />
-                <ImgArrow src={logoArrow} alt="" srcset={logoArrow} />
             </Main> : <App />}
-
         </>
     )
 }
