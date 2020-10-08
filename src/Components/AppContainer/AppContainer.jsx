@@ -28,9 +28,6 @@ export default function AppContainer() {
                     />
                 </div>
 
-                <footer>
-                    <Footer />
-                </footer>
             </BrowserRouter>
         </main>
     )
