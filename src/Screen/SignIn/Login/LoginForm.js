@@ -52,6 +52,7 @@ export default function LoginForm(props) {
                     value={form.password}
                     onChange={handleOnChange}
                     placeholder={'Minimo de 6 caracteres'}
+                    pattern = '/[0-9a-zA-Z]{6,}/'
                     type={type}
                     autoComplete={'password'}
                     required

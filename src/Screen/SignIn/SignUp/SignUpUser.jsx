@@ -16,7 +16,6 @@ export default function SignUpUser(props) {
             <NavBarWithButton
                 clickGoBack={() => goToBack(history)}
             />
-            <p>Meu Endereço</p>
             <ScreenContainer>
 
                 <img alt={'logo'} src={logo} />
