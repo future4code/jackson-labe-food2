@@ -27,11 +27,11 @@ export const goToUser = (history) => {
 }
 
 export const goToEditUser = (history) => {
-    history.push("/usuario/editar/")
+    history.push("/editar/usuario")
 }
 
 export const goToEditAddress = (history) => {
-    history.push("/usuario/editar/endereco")
+    history.push("/editar/endereco")
 }
 
 export const goToCart = (history, id) => {
