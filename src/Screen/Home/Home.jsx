@@ -8,13 +8,19 @@ import { goToRestaurant, goToSearch } from '../../Router/Coordinator'
 import {Main, ImgSearch,} from './styled'
 // import lupa from '../../Assets/Imgs/lupa.svg'
 import Inputs from '../../Components/Inputs/Inputs'
-
+import { useHistory } from 'react-router-dom'
+import Footer from '../../Components/Fixeds/Footer/Footer'
+import { goToHome, goToCart, goToUser } from '../../Router/Coordinator'
+import avatar from '../../Assets/Imgs/avatar.svg'
+import homePage from '../../Assets/Imgs/homepage.svg'
+import shopCart from '../../Assets/Imgs/shopping-cart.svg'
 
 export default function Home(props) {
     const { token } = window.localStorage.getItem("token")
     const history = useHistory()
-
-    useEffect(() => {
+    const { token } = useAxios()
+    const history = useHistory()
+    React.useEffect(() => {
         props.getRestaurants()
     }, [])
 
@@ -49,9 +55,19 @@ export default function Home(props) {
                             </>
                         )
                     })}
+
                 </div>
 
             </Main>
-        </>
+        <Footer 
+                    clickGoHome={() => goToHome(history)}
+                    homePage = {homePage}
+                    clickGoCart={() => goToCart(history)}
+                    shopCart = {shopCart}
+                    clickGoUser={() => goToUser(history)}
+                    avatar = {avatar}
+
+                />
+        </>      
     )
 }
