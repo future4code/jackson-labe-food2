@@ -9,8 +9,7 @@ import { Main } from './styled'
 export default function EditUser(props) {
     const { form, onChange, resetState } = useForm({ name: '', email: '', cpf: '' })
 
-    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlBXcEhOWERScWtMRndtTllkTUFNIiwibmFtZSI6IkJhbmFuaW5oYSBDb20gQcOnYWkiLCJlbWFpbCI6IkJhbmFuaW5oYUAxMi5jb20iLCJjcGYiOiIxNDMuOTU3LjI1Ni05NyIsImhhc0FkZHJlc3MiOnRydWUsImFkZHJlc3MiOiJSLiBMb29waW5obyBCcmF6LCBpbmZpbml0ZSwgMDAwIC0gVmlsYSBOLiBpbmZpbml0byBkbyBwcmV0w6lyaXRvIiwiaWF0IjoxNjAxOTM3ODgxfQ.m21po06KvqeHnxC7T6OR9Q8BVdfoO4MIGjntMtfXRkU'
-
+    const token = window.localStorage.getItem("token")
     const handleUser = () => {
         const body = {
             name: form.name,
