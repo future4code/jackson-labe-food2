@@ -1,5 +1,4 @@
 import React from 'react'
-import axios from 'axios'
 import Red from '../../../Components/Buttons/Red/Red'
 import NavBarWithButton from '../../../Components/Fixeds/Header/NavBarWithButton'
 import Inputs from '../../../Components/Inputs/Inputs'
@@ -7,7 +6,7 @@ import useForm from '../../../Hooks/useForm'
 import useAxios from "../../../Hooks/useAxios"
 import { useHistory } from 'react-router-dom'
 import {Main} from './styled'
-
+import { goToBack, goToUser } from '../../../Router/Coordinator'
 
 export default function EditAddress() {
     const {form, onChange, resetState} =useForm({street:"", number:"", neighbourhood:"", city:"", state:"", complement:""})
@@ -25,12 +24,11 @@ export default function EditAddress() {
         onChange(name, value)
     }   
 
-
-
     return (
        <>
         <NavBarWithButton
             titleHeader="Endereço"
+            clickGoBack={()=>goToUser(history)}
         />
         <Main>
 
