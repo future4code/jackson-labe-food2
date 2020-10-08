@@ -54,12 +54,12 @@ export default function Router(props) {
                 <Restaurant />
             </Route>
 
-            <Route exact path="/usuario/:userId">
+            <Route exact path="/usuario/">
                 {/* Tela de usuario */}
                 <User />
             </Route>
 
-            <Route exact path="/usuario/editar/:userId">
+            <Route exact path="/editar/usuario">
                 {/* Tela de edição das infos do usuario */}
                 <EditUser
                     getProfile={props.getProfile}

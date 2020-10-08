@@ -1,14 +1,17 @@
 import axios from 'axios'
 import React from 'react'
+import { useHistory } from 'react-router-dom'
 import Red from '../../../Components/Buttons/Red/Red'
-import NavBar from '../../../Components/Fixeds/Header/NavBar'
+import NavBarWithButton from '../../../Components/Fixeds/Header/NavBarWithButton'
 import Inputs from '../../../Components/Inputs/Inputs'
 import useForm from '../../../Hooks/useForm'
+import { goToBack, goToUser } from '../../../Router/Coordinator'
 import { Main } from './styled'
 
 export default function EditUser(props) {
     const { form, onChange, resetState } = useForm({ name: '', email: '', cpf: '' })
 
+    const history = useHistory()
     const token = window.localStorage.getItem("token")
     const handleUser = () => {
         const body = {
@@ -45,8 +48,9 @@ export default function EditUser(props) {
 
     return (
         <>
-            <NavBar
+            <NavBarWithButton
                 titleHeader='Editar'
+                clickGoBack={()=>goToUser(history)}
             />
             <Main>
                 <form onSubmit={handleSubmission}>

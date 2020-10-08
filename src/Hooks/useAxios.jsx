@@ -53,7 +53,6 @@ export default function useAxios() {
             })
     }
 
-
     // será substituido por - - - const token = window.localStorage.getItem("token")
     const token = window.localStorage.getItem('token')
 
