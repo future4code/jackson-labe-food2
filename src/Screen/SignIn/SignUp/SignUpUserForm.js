@@ -80,6 +80,7 @@ export default function SignUpForm(props) {
                     value={form.cpf}
                     onChange={handleForm}
                     placeholder={'000.000.000-00'}
+                    pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"
                     type={'cpf'}
                     autoComplete={'cpf'}
                     required
@@ -90,6 +91,7 @@ export default function SignUpForm(props) {
                     value={form.password}
                     onChange={handleForm}
                     placeholder={'Senha*'}
+                    pattern = '/[0-9a-zA-Z]{6,}/'
                     senha1
                     type={type}
                     autoComplete={'password'}
@@ -106,6 +108,7 @@ export default function SignUpForm(props) {
                     onChange={handleForm}
                     senha2
                     placeholder={'Confirmar Senha*'}
+                    pattern = '/[0-9a-zA-Z]{6,}/'
                     type={typeConfirm}
                     autoComplete={'password'}
                     required
