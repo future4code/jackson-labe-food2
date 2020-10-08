@@ -22,16 +22,16 @@ export const goToRestaurant = (history, id) => {
     history.push(`/restaurante/${id}`)
 }
 
-export const goToUser = (history, id) => {
-    history.push(`/usuario/${id}`)
+export const goToUser = (history) => {
+    history.push('/usuario/')
 }
 
-export const goToEditUser = (history, id) => {
-    history.push(`/usuario/editar/${id}`)
+export const goToEditUser = (history) => {
+    history.push("/editar/usuario")
 }
 
-export const goToEditAddress = (history, id) => {
-    history.push(`/usuario/editar/endereco`)
+export const goToEditAddress = (history) => {
+    history.push("/editar/endereco")
 }
 
 export const goToCart = (history, id) => {

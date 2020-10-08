@@ -1,16 +1,18 @@
 import axios from 'axios'
 import React from 'react'
+import { useHistory } from 'react-router-dom'
 import Red from '../../../Components/Buttons/Red/Red'
-import NavBar from '../../../Components/Fixeds/Header/NavBar'
+import NavBarWithButton from '../../../Components/Fixeds/Header/NavBarWithButton'
 import Inputs from '../../../Components/Inputs/Inputs'
 import useForm from '../../../Hooks/useForm'
+import { goToBack, goToUser } from '../../../Router/Coordinator'
 import { Main } from './styled'
 
 export default function EditUser(props) {
     const { form, onChange, resetState } = useForm({ name: '', email: '', cpf: '' })
 
-    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlBXcEhOWERScWtMRndtTllkTUFNIiwibmFtZSI6IkJhbmFuaW5oYSBDb20gQcOnYWkiLCJlbWFpbCI6IkJhbmFuaW5oYUAxMi5jb20iLCJjcGYiOiIxNDMuOTU3LjI1Ni05NyIsImhhc0FkZHJlc3MiOnRydWUsImFkZHJlc3MiOiJSLiBMb29waW5obyBCcmF6LCBpbmZpbml0ZSwgMDAwIC0gVmlsYSBOLiBpbmZpbml0byBkbyBwcmV0w6lyaXRvIiwiaWF0IjoxNjAxOTM3ODgxfQ.m21po06KvqeHnxC7T6OR9Q8BVdfoO4MIGjntMtfXRkU'
-
+    const history = useHistory()
+    const token = window.localStorage.getItem("token")
     const handleUser = () => {
         const body = {
             name: form.name,
@@ -46,8 +48,9 @@ export default function EditUser(props) {
 
     return (
         <>
-            <NavBar
+            <NavBarWithButton
                 titleHeader='Editar'
+                clickGoBack={()=>goToUser(history)}
             />
             <Main>
                 <form onSubmit={handleSubmission}>
