@@ -1,9 +1,14 @@
-import React from 'react'
+import React from 'react';
+import { OrderContainer } from './styled';
 
-export default function OrderHistory() {
+export default function OrderHistory(props) {
+
     return (
-        <main>
-
-        </main>
+        <OrderContainer>
+            <p>{props.title}</p>
+            <small>{props.date}</small>
+            <h4>{props.totalPrice}</h4>
+        </OrderContainer>
     )
+
 }
