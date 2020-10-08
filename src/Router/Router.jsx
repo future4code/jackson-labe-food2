@@ -56,7 +56,10 @@ export default function Router(props) {
 
             <Route exact path="/usuario/">
                 {/* Tela de usuario */}
-                <User />
+                <User 
+                    getProfile={props.getProfile}
+                    profile={props.profile}
+                />
             </Route>
 
             <Route exact path="/editar/usuario">
