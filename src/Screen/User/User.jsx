@@ -1,49 +1,60 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import NavBar from '../../Components/Fixeds/Header/NavBar';
 import OrderHistory from '../../Components/OrderHistory/OrderHistory';
 import { goToEditUser, goToEditAddress } from '../../Router/Coordinator';
-import { getProfile, getOrderHistory } from '../../Hooks/useAxios';
+import { ProfileData, Address, HistoryTitle, Status } from './styled';
 import editUser from '../../Assets/Imgs/edit-user.png';
 
-export default function User(){
+export default function User(props){
+
+  useEffect(() => {
+    getOrderHistory()
+    props.getProfile()
+  }, [])
 
   const history = useHistory()
 
-  const { profile, setProfile } = getProfile()
+  const [ orderHistory, setOrderHistory ] = useState({})
+  const getOrderHistory = () => {
+    axios.get('https://us-central1-missao-newton.cloudfunctions.net/fourFoodB/orders/history', {
+        headers: {
+            auth: window.localStorage.getItem("token")
+        }
+    }).then((response) => {
+        setOrderHistory(response.data.order)
+    }).catch((error) => {
+        console.log(error)
+    })
+  }
 
-  const { orderHistory, setOrderHistory } = getOrderHistory()
-
-  const listOrders = orderHistory.map(order => {
+  const listOrders = () => {
     return (
       <OrderHistory
-        title={order.restaurantName}
-        date={order.createdAt}
-        price={order.totalPrice}
+        title={orderHistory.restaurantName}
+        date={orderHistory.createdAt}
+        price={orderHistory.totalPrice}
       />
     )
-  })
+  }
 
   return (
     <div>
       <NavBar titleHeader={'Meu perfil'} />
       <ProfileData>
-        <span>{profile.name}</span>
+        <span>{props.profile.name}</span>
         <img onClick={() => goToEditUser(history)} src={editUser} alt={'Editar dados de usuário'} />
-        <p>{profile.email}</p>
-        <p>{profile.cpf}</p>
+        <p>{props.profile.email}</p>
+        <p>{props.profile.cpf}</p>
       </ProfileData>
       <Address>
-        <div>
-          <p>Endereço cadastrado</p>
-          <p>{profile.address}</p>
-        </div>
-        <div>
-          <img onClick={() => goToEditAddress(history)} src={editUser} alt={'Editar endereço'} />
-        </div>
+        <span>Endereço cadastrado</span>
+        <img onClick={() => goToEditAddress(history)} src={editUser} alt={'Editar endereço'} />
+        <p>{props.profile.address}</p>
       </Address>
-      <p>Histórico de pedidos</p>
-      {listOrders.length > 0 ? listOrders : <p>Você não realizou nenhum pedido</p>}
+      <HistoryTitle>Histórico de pedidos</HistoryTitle>
+      {listOrders.length > 0 ? listOrders : <Status>Você não realizou nenhum pedido</Status>}
     </div>
   )
 
