@@ -67,7 +67,7 @@ export default function Router(props) {
                 />
             </Route>
 
-            <Route exact path="/usuario/editar/endereco">
+            <Route exact path="/editar/endereco">
                 {/* Tela de edição do endereço do usuario */}
                 <EditAddress />
             </Route>
