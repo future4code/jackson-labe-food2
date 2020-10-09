@@ -11,31 +11,18 @@ import editUser from '../../Assets/Imgs/edit-user.png';
 export default function User(props){
 
   useEffect(() => {
-    getOrderHistory()
+    props.getOrderHistory()
     props.getProfile()
   }, [])
 
   const history = useHistory()
 
-  const [ orderHistory, setOrderHistory ] = useState({})
-  const getOrderHistory = () => {
-    axios.get('https://us-central1-missao-newton.cloudfunctions.net/fourFoodB/orders/history', {
-        headers: {
-            auth: window.localStorage.getItem("token")
-        }
-    }).then((response) => {
-        setOrderHistory(response.data.order)
-    }).catch((error) => {
-        console.log(error)
-    })
-  }
-
   const listOrders = () => {
     return (
       <OrderHistory
-        title={orderHistory.restaurantName}
-        date={orderHistory.createdAt}
-        price={orderHistory.totalPrice}
+        title={props.orderHistory.restaurantName}
+        date={props.orderHistory.createdAt}
+        price={props.orderHistory.totalPrice}
       />
     )
   }

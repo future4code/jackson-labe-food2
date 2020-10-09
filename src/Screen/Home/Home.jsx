@@ -11,7 +11,7 @@ import Inputs from '../../Components/Inputs/Inputs'
 import Footer from '../../Components/Fixeds/Footer/Footer'
 import { goToHome, goToCart, goToUser } from '../../Router/Coordinator'
 import avatar from '../../Assets/Imgs/avatar.svg'
-import homePage from '../../Assets/Imgs/homepage.svg'
+import homePage from '../../Assets/Imgs/homepage (1).svg'
 import shopCart from '../../Assets/Imgs/shopping-cart.svg'
 
 export default function Home(props) {
@@ -19,6 +19,7 @@ export default function Home(props) {
     const history = useHistory()
     React.useEffect(() => {
         props.getRestaurants()
+        props.getActiveOrder()
     }, [])
 
 

@@ -4,33 +4,16 @@ import { useHistory } from 'react-router-dom'
 import Red from '../../../Components/Buttons/Red/Red'
 import NavBarWithButton from '../../../Components/Fixeds/Header/NavBarWithButton'
 import Inputs from '../../../Components/Inputs/Inputs'
+import useAxios from '../../../Hooks/useAxios'
 import useForm from '../../../Hooks/useForm'
 import { goToBack, goToUser } from '../../../Router/Coordinator'
 import { Main } from './styled'
 
 export default function EditUser(props) {
+    const { handleUser } = useAxios()
     const { form, onChange, resetState } = useForm({ name: '', email: '', cpf: '' })
-
     const history = useHistory()
-    const token = window.localStorage.getItem("token")
-    const handleUser = () => {
-        const body = {
-            name: form.name,
-            email: form.email,
-            cpf: form.cpf
-        }
-        axios.put('https://us-central1-missao-newton.cloudfunctions.net/fourFoodB/profile', body, {
-            headers: {
-                auth: token
-            }
-        }).then((response) => {
-            console.log(response)
-            props.getProfile()
-        }).catch((error) => {
-            console.log(error)
-        })
-    }
-
+    
     const handleForm = (event) => {
         const { name, value } = event.target
         onChange(name, value)
@@ -38,7 +21,7 @@ export default function EditUser(props) {
 
     const handleSubmission = (event) => {
         event.preventDefault()
-        handleUser()
+        handleUser(form, history)
         resetState()
     }
 
@@ -50,7 +33,7 @@ export default function EditUser(props) {
         <>
             <NavBarWithButton
                 titleHeader='Editar'
-                clickGoBack={()=>goToUser(history)}
+                clickGoBack={() => goToUser(history)}
             />
             <Main>
                 <form onSubmit={handleSubmission}>

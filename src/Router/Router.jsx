@@ -22,6 +22,8 @@ export default function Router(props) {
                     profile={props.profile}
                     getRestaurants={props.getRestaurants}
                     restaurants={props.restaurants}
+                    getDetail={props.getDetail}
+                    detail={props.detail}
                     getActiveOrder={props.getActiveOrder}
                     activeOrder={props.activeOrder}
                     getOrderHistory={props.getOrderHistory}
@@ -51,14 +53,23 @@ export default function Router(props) {
 
             <Route exact path="/restaurante/:restaurantId">
                 {/* Tela de detalhes restaurante*/}
-                <Restaurant />
+                <Restaurant
+                    getDetail={props.getDetail}
+                    detail={props.detail}
+                    getActiveOrder={props.getActiveOrder}
+                    activeOrder={props.activeOrder}
+                    getOrderHistory={props.getActiveOrder}
+                    orderHistory={props.orderHistory}
+                />
             </Route>
 
             <Route exact path="/usuario/">
                 {/* Tela de usuario */}
-                <User 
+                <User
                     getProfile={props.getProfile}
                     profile={props.profile}
+                    getOrderHistory={props.getActiveOrder}
+                    orderHistory={props.orderHistory}
                 />
             </Route>
 
@@ -77,7 +88,10 @@ export default function Router(props) {
 
             <Route exact path="/carrinho">
                 {/* Tela de carrinho */}
-                <Cart />
+                <Cart
+                    getProfile={props.getProfile}
+                    profile={props.profile}
+                />
             </Route>
 
             <Route>

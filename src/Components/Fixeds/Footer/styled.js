@@ -8,6 +8,8 @@ export const FooterContainer = styled.footer`
   align-items: center;
   justify-content: space-around;
   position: fixed;
+  background: white;
+  bottom: 0;
   margin-bottom: 0;
   > img {
     width: 1.688rem;
