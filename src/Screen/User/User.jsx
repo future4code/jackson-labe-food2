@@ -3,26 +3,43 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import NavBar from '../../Components/Fixeds/Header/NavBar';
+import Footer from '../../Components/Fixeds/Footer/Footer';
 import OrderHistory from '../../Components/OrderHistory/OrderHistory';
-import { goToEditUser, goToEditAddress } from '../../Router/Coordinator';
+import { goToEditUser, goToEditAddress, goToHome, goToCart, goToUser } from '../../Router/Coordinator';
 import { ProfileData, Address, HistoryTitle, Status } from './styled';
 import editUser from '../../Assets/Imgs/edit-user.png';
+import avatar from '../../Assets/Imgs/avatar.svg'
+import homePage from '../../Assets/Imgs/homepage.svg'
+import shopCart from '../../Assets/Imgs/shopping-cart.svg'
 
 export default function User(props){
 
   useEffect(() => {
-    props.getOrderHistory()
+    getOrderHistory()
     props.getProfile()
   }, [])
 
   const history = useHistory()
 
+  const [ orderHistory, setOrderHistory ] = useState({})
+  const getOrderHistory = () => {
+    axios.get('https://us-central1-missao-newton.cloudfunctions.net/fourFoodB/orders/history', {
+        headers: {
+            auth: window.localStorage.getItem("token")
+        }
+    }).then((response) => {
+        setOrderHistory(response.data.order)
+    }).catch((error) => {
+        console.log(error)
+    })
+  }
+
   const listOrders = () => {
     return (
       <OrderHistory
-        title={props.orderHistory.restaurantName}
-        date={props.orderHistory.createdAt}
-        price={props.orderHistory.totalPrice}
+        title={orderHistory.restaurantName}
+        date={orderHistory.createdAt}
+        price={orderHistory.totalPrice}
       />
     )
   }
@@ -43,6 +60,14 @@ export default function User(props){
       </Address>
       <HistoryTitle>Histórico de pedidos</HistoryTitle>
       {listOrders.length > 0 ? listOrders : <Status>Você não realizou nenhum pedido</Status>}
+      <Footer
+        homePage={homePage}
+        shopCart={shopCart}
+        avatar={avatar}
+        clickGoHome={() => goToHome(history)}
+        clickGoCart={() => goToCart(history)}
+        clickGoUser={() => goToUser(history)}
+      />
     </div>
   )
 
