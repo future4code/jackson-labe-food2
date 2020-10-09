@@ -35,17 +35,12 @@ export const ImgRe = styled.img`
     height: 29px;
 `
 
-
-export const ImgTitle = styled.img`
-    width: 126px;
-`
-
 export const ImgArrow = styled.img`
     width: 56px;
     position: relative;
     animation: arrow 1s ease-in-out;
     @keyframes arrow {
-        0%{top: -2%; left: -7%; transform: rotateZ(100deg)}
+        0%{top: -2.5%; left: -9%; transform: rotateZ(100deg)}
         /* 50%{top: -0.1%; left: -2%; transform: rotateZ(50deg)} */
         100%{top: 0%; left: 0%; transform: rotateZ(0deg);}
     }
