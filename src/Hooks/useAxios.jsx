@@ -1,16 +1,18 @@
 import axios from 'axios'
 import React from 'react'
-import { goToHome } from '../Router/Coordinator'
+import { goToEditAddress, goToHome } from '../Router/Coordinator'
 
 export default function useAxios() {
     const [profile, setProfile] = React.useState([])
     const [restaurants, setRestaurants] = React.useState([])
+    const [detail, setDetail] = React.useState([])
     const [activeOrder, setActiveOrder] = React.useState([])
     const [orderHistory, setOrderHistory] = React.useState([])
 
     // Método de login e cadastro
     const baseUrl = "https://us-central1-missao-newton.cloudfunctions.net/fourFoodB"
 
+    // Todos os métodos post
     const login = (body, history) => {
         axios.post(`${baseUrl}/login`, body)
             .then((response) => {
@@ -36,6 +38,7 @@ export default function useAxios() {
             })
     }
 
+    // Todos os métodos put
     const addAddress = (body, history) => {
         axios.put(`${baseUrl}/address`, body, {
             headers: {
@@ -53,9 +56,24 @@ export default function useAxios() {
             })
     }
 
+    const handleUser = (body, history) => {
+        axios.put('https://us-central1-missao-newton.cloudfunctions.net/fourFoodB/profile', body, {
+            headers: {
+                auth: token
+            }
+        }).then((response) => {
+            console.log(response)
+            getProfile()
+            goToEditAddress(history)
+        }).catch((error) => {
+            console.log(error)
+        })
+    }
+
     // será substituido por - - - const token = window.localStorage.getItem("token")
     const token = window.localStorage.getItem('token')
 
+    // Todos os métodos get
     const getProfile = () => {
         axios.get('https://us-central1-missao-newton.cloudfunctions.net/fourFoodB/profile', {
             headers: {
@@ -82,6 +100,20 @@ export default function useAxios() {
         })
     }
 
+    const getDetail = () => {
+        axios.get('https://us-central1-missao-newton.cloudfunctions.net/fourFoodB/restaurants/1', {
+            headers: {
+                auth: token
+            }
+        }).then((response) => {
+            console.log(response.data.restaurant.products)
+            setDetail(response.data.restaurant.products)
+        }).catch((error) => {
+            console.log(error)
+        })
+    }
+
+
     const getActiveOrder = () => {
         axios.get('https://us-central1-missao-newton.cloudfunctions.net/fourFoodB/active-order', {
             headers: {
@@ -106,5 +138,5 @@ export default function useAxios() {
             console.log(error)
         })
     }
-    return { login, signUpUser, addAddress, getProfile, profile, getRestaurants, restaurants, getActiveOrder, activeOrder, getOrderHistory, orderHistory }
+    return { login, signUpUser, addAddress, handleUser, getProfile, profile, getRestaurants, restaurants, getDetail, detail, getActiveOrder, activeOrder, getOrderHistory, orderHistory }
 }
