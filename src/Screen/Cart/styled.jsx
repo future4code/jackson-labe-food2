@@ -27,7 +27,7 @@ export const Entrega = styled.div`
     b{
         padding: 0rem 1rem 1rem;
         display: block;
-        font-weight: 500;
+        font-weight: 400;
         color: #000000;
     }
 `
@@ -61,5 +61,5 @@ export const FormPayment = styled.div`
         margin: 0 0 0.5rem;
     }
     border-bottom: 1px solid black;
-    margin:0 0 0.5rem;
+    margin: 0 0 1.5rem;
 `
