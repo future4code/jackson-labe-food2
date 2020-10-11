@@ -12,7 +12,7 @@ import avatar from '../../Assets/Imgs/avatar.svg'
 import homePage from '../../Assets/Imgs/homepage.svg'
 import shopCart from '../../Assets/Imgs/shopping-cart.svg'
 
-export default function User(props){
+export default function User(props) {
 
   useEffect(() => {
     getOrderHistory()
@@ -21,16 +21,16 @@ export default function User(props){
 
   const history = useHistory()
 
-  const [ orderHistory, setOrderHistory ] = useState({})
+  const [orderHistory, setOrderHistory] = useState({})
   const getOrderHistory = () => {
     axios.get('https://us-central1-missao-newton.cloudfunctions.net/fourFoodB/orders/history', {
-        headers: {
-            auth: window.localStorage.getItem("token")
-        }
+      headers: {
+        auth: window.localStorage.getItem("token")
+      }
     }).then((response) => {
-        setOrderHistory(response.data.order)
+      setOrderHistory(response.data.order)
     }).catch((error) => {
-        console.log(error)
+      console.log(error)
     })
   }
 
@@ -48,8 +48,8 @@ export default function User(props){
     <div>
       <NavBar titleHeader={'Meu perfil'} />
       <ProfileData>
-        <span>{props.profile.name}</span>
         <img onClick={() => goToEditUser(history)} src={editUser} alt={'Editar dados de usuário'} />
+        <p>{props.profile.name}</p>
         <p>{props.profile.email}</p>
         <p>{props.profile.cpf}</p>
       </ProfileData>
