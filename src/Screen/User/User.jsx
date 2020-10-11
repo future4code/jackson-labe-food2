@@ -12,7 +12,7 @@ import avatar from '../../Assets/Imgs/avatar.svg'
 import homePage from '../../Assets/Imgs/homepage.svg'
 import shopCart from '../../Assets/Imgs/shopping-cart.svg'
 
-export default function User(props){
+export default function User(props) {
 
   useEffect(() => {
     getOrderHistory()
@@ -21,16 +21,16 @@ export default function User(props){
 
   const history = useHistory()
 
-  const [ orderHistory, setOrderHistory ] = useState({})
+  const [orderHistory, setOrderHistory] = useState({})
   const getOrderHistory = () => {
     axios.get('https://us-central1-missao-newton.cloudfunctions.net/fourFoodB/orders/history', {
-        headers: {
-            auth: window.localStorage.getItem("token")
-        }
+      headers: {
+        auth: window.localStorage.getItem("token")
+      }
     }).then((response) => {
-        setOrderHistory(response.data.order)
+      setOrderHistory(response.data.order)
     }).catch((error) => {
-        console.log(error)
+      console.log(error)
     })
   }
 

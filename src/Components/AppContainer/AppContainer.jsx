@@ -7,7 +7,7 @@ import NavBar from '../Fixeds/Header/NavBar'
 
 
 export default function AppContainer() {
-    const { getProfile, profile, getRestaurants, restaurants, getDetail, detail, getActiveOrder, activeOrder, getOrderHistory, orderHistory } = useAxios()
+    const { getProfile, profile, getRestaurants, restaurants, getDetail, detail, products, getActiveOrder, activeOrder, getOrderHistory, orderHistory } = useAxios()
     return (
         <main>
             <BrowserRouter>
@@ -23,6 +23,7 @@ export default function AppContainer() {
                         restaurants={restaurants}
                         getDetail={getDetail}
                         detail={detail}
+                        products={products}
                         getActiveOrder={getActiveOrder}
                         activeOrder={activeOrder}
                         getOrderHistory={getOrderHistory}

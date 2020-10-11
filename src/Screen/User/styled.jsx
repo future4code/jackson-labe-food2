@@ -1,14 +1,19 @@
 import styled from 'styled-components'
 
 export const ProfileData = styled.div`
-  width: 100%;
-  padding: 1rem;
+  width: 22.5rem;
+  /* padding: 1rem; */
+  >span {
+    margin: 1rem 0 0.5rem;
+  }
   > p {
-    margin: 0.5rem 0;
+    width: 20rem;
+    margin: 0;
+    
   }
   > img {
     float: right;
-    margin-right: 2rem
+    margin-right: 1rem
   }
 `
 export const Address = styled.div`

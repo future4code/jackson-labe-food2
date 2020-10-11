@@ -1,5 +1,5 @@
 import React from 'react';
-import { CardContainer, SpanMin, SpanShipping } from './styled';
+import { CardContainer, SpanMin, SpanShipping, SpanAddress } from './styled';
 
 export default function CardRestaurant(props) {
 
@@ -9,6 +9,7 @@ export default function CardRestaurant(props) {
             <p>{props.nameRestaurant}</p>
             <SpanMin>{props.deliveryTime} min</SpanMin>
             <SpanShipping>Frete R${props.shipping},00</SpanShipping>
+            <SpanAddress>{props.address}</SpanAddress>
         </CardContainer>
     )
 }

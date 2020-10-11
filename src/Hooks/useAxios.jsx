@@ -1,13 +1,16 @@
 import axios from 'axios'
 import React from 'react'
+import { useParams } from 'react-router-dom'
 import { goToEditAddress, goToHome } from '../Router/Coordinator'
 
 export default function useAxios() {
     const [profile, setProfile] = React.useState([])
     const [restaurants, setRestaurants] = React.useState([])
     const [detail, setDetail] = React.useState([])
+    const [products, setProducts] = React.useState([])
     const [activeOrder, setActiveOrder] = React.useState([])
     const [orderHistory, setOrderHistory] = React.useState([])
+    const pathParams = useParams()
 
     // Método de login e cadastro
     const baseUrl = "https://us-central1-missao-newton.cloudfunctions.net/fourFoodB"
@@ -101,13 +104,14 @@ export default function useAxios() {
     }
 
     const getDetail = () => {
-        axios.get('https://us-central1-missao-newton.cloudfunctions.net/fourFoodB/restaurants/1', {
+        axios.get(`https://us-central1-missao-newton.cloudfunctions.net/fourFoodB/restaurants/1`, {
             headers: {
                 auth: token
             }
         }).then((response) => {
             console.log(response.data.restaurant.products)
-            setDetail(response.data.restaurant.products)
+            setDetail(response.data.restaurant)
+            setProducts(response.data.restaurant.products)
         }).catch((error) => {
             console.log(error)
         })
@@ -120,8 +124,8 @@ export default function useAxios() {
                 auth: token
             }
         }).then((response) => {
-            console.log(response.data)
-            setActiveOrder(response.data)
+            console.log(response.data.order)
+            setActiveOrder(response.data.order)
         }).catch((error) => {
             console.log(error)
         })
@@ -138,5 +142,5 @@ export default function useAxios() {
             console.log(error)
         })
     }
-    return { login, signUpUser, addAddress, handleUser, getProfile, profile, getRestaurants, restaurants, getDetail, detail, getActiveOrder, activeOrder, getOrderHistory, orderHistory }
+    return { login, signUpUser, addAddress, handleUser, getProfile, profile, getRestaurants, restaurants, getDetail, detail, products, getActiveOrder, activeOrder, getOrderHistory, orderHistory }
 }

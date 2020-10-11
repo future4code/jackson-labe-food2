@@ -13,6 +13,7 @@ import { goToHome, goToCart, goToUser } from '../../Router/Coordinator'
 import avatar from '../../Assets/Imgs/avatar.svg'
 import homePage from '../../Assets/Imgs/homepage (1).svg'
 import shopCart from '../../Assets/Imgs/shopping-cart.svg'
+import PopupOrder from '../../Components/PopupOrder/PopupOrder'
 
 export default function Home(props) {
     const { token } = useAxios()
@@ -57,6 +58,7 @@ export default function Home(props) {
                 </div>
 
             </Main>
+            {props.activeOrder && <PopupOrder restaurantName={props.activeOrder.restaurantName} amountTotal={props.activeOrder.totalPrice}/>}
             <Footer
                 clickGoHome={() => goToHome(history)}
                 homePage={homePage}
