@@ -1,6 +1,7 @@
 import React from 'react';
+import {Counter, RemoveButton, AddButton, CardContainer, ImgWrapper, Img, CardContent, TitleSpan, ContentSpan, PriceSpan}from './styled';
 
-export default function CardMenu() {
+export default function CardMenu(props) {
 
     const renderCartQuantity = props.productQuantity 
     ? <Counter>{props.productQuantity}</Counter> 
