@@ -48,8 +48,8 @@ export default function User(props) {
     <div>
       <NavBar titleHeader={'Meu perfil'} />
       <ProfileData>
-        <img onClick={() => goToEditUser(history)} src={editUser} alt={'Editar dados de usuário'} />
-        <p>{props.profile.name}</p>
+        <span>{props.profile.name}</span>
+        <img onClick={() => goToEditUser(history)} src={editUser} alt={'Editar dados de usuário'} data-testid={'editUser'} />
         <p>{props.profile.email}</p>
         <p>{props.profile.cpf}</p>
       </ProfileData>
