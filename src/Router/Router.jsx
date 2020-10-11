@@ -56,6 +56,7 @@ export default function Router(props) {
                 <Restaurant
                     getDetail={props.getDetail}
                     detail={props.detail}
+                    products={props.products}
                     getActiveOrder={props.getActiveOrder}
                     activeOrder={props.activeOrder}
                     getOrderHistory={props.getActiveOrder}
@@ -91,6 +92,8 @@ export default function Router(props) {
                 <Cart
                     getProfile={props.getProfile}
                     profile={props.profile}
+                    getActiveOrder={props.getActiveOrder}
+                    activeOrder={props.activeOrder}
                 />
             </Route>
 
