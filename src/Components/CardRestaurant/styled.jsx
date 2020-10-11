@@ -35,4 +35,7 @@ export const SpanMin = styled.span`
 export const SpanShipping = styled.span`
   margin-left: 0; 
 `
-
+export const SpanAddress = styled.span`
+  display:block;
+  margin:0.625rem 1rem 0;
+`
