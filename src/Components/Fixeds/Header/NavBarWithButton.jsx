@@ -7,7 +7,7 @@ export default function NavBarWithButton(props) {
         <Header>
             <img onClick={props.clickGoBack} src={goBack} alt='Voltar' />
             <div>
-                <p>{props.titleHeader}</p>
+                <p data-testid={'titleHeader'}>{props.titleHeader}</p>
             </div>
         </Header>
     );
