@@ -76,7 +76,7 @@ export default function Cart(props) {
 
                     <SubTotal>
                         <p>SUBTOTAL</p>
-                        <b>R${props.activeOrder.totalPrice}0</b>
+                        <b>R$00,00</b>
                     </SubTotal>
 
                     <FormPayment>
