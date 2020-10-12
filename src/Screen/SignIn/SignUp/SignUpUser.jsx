@@ -14,7 +14,7 @@ export default function SignUpUser(props) {
     return (
         <>
             <NavBarWithButton
-                clickGoBack={() => goToBack(history)}
+                onClick={() => goToLogin(history)}
             />
             <ScreenContainer>
 

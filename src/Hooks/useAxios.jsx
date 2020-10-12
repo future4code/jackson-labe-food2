@@ -3,7 +3,7 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 import { goToEditAddress, goToHome } from '../Router/Coordinator'
 
-export default function useAxios() {
+export default function useAxios(props) {
     const [profile, setProfile] = React.useState([])
     const [restaurants, setRestaurants] = React.useState([])
     const [detail, setDetail] = React.useState([])
@@ -103,8 +103,8 @@ export default function useAxios() {
         })
     }
 
-    const getDetail = () => {
-        axios.get(`https://us-central1-missao-newton.cloudfunctions.net/fourFoodB/restaurants/1`, {
+    const getDetail = (id) => {
+        axios.get(`https://us-central1-missao-newton.cloudfunctions.net/fourFoodB/restaurants/10`, {
             headers: {
                 auth: token
             }
@@ -114,6 +114,7 @@ export default function useAxios() {
             setProducts(response.data.restaurant.products)
         }).catch((error) => {
             console.log(error)
+            console.log(pathParams.id)
         })
     }
 

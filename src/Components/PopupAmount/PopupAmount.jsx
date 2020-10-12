@@ -1,7 +1,7 @@
 import React from 'react'
 import { Main, Popup } from './styled'
 
-export default function PopupAmount() {
+export default function PopupAmount(props) {
     const [options] = React.useState([{ val: 1 }, { val: 2 }, { val: 3 }, { val: 4 }, { val: 5 }, { val: 6 }, { val: 7 }, { val: 8 }, { val: 9 }, { val: 10 }])
     const [amount, setAmount] = React.useState()
 
@@ -20,7 +20,7 @@ export default function PopupAmount() {
                         )
                     })}
                 </select>
-                <b>Adicionar ao carrinho</b>
+                <b onClick={props.adicionar}>Adicionar ao carrinho</b>
             </Popup>
         </Main>
     )

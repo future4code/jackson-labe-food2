@@ -23,7 +23,6 @@ export default function Home(props) {
         props.getActiveOrder()
     }, [])
 
-
     return (
         <>
             <NavBar
@@ -58,7 +57,7 @@ export default function Home(props) {
                 </div>
 
             </Main>
-            {props.activeOrder && <PopupOrder restaurantName={props.activeOrder.restaurantName} amountTotal={props.activeOrder.totalPrice}/>}
+            {props.activeOrder && <PopupOrder restaurantName={props.activeOrder.restaurantName} amountTotal={props.activeOrder.totalPrice} />}
             <Footer
                 clickGoHome={() => goToHome(history)}
                 homePage={homePage}
