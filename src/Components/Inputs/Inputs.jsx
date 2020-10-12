@@ -13,7 +13,7 @@ export default function Inputs(props) {
             autoFocus={props.autofocus}
             data-mask={props.dataMask}
             pattern={props.pattern}
-            required
+            required={props.required}
         />
     )
 }
