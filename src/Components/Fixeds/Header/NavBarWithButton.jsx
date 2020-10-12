@@ -5,7 +5,7 @@ import { Header } from './styled';
 export default function NavBarWithButton(props) {
     return (
         <Header>
-            <img onClick={props.clickGoBack} src={goBack} alt='Voltar' />
+            <img onClick={props.onClick} src={goBack} alt='Voltar' />
             <div>
                 <p data-testid={'titleHeader'}>{props.titleHeader}</p>
             </div>

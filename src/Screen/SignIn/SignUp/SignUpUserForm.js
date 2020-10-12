@@ -91,7 +91,7 @@ export default function SignUpForm(props) {
                     value={form.password}
                     onChange={handleForm}
                     placeholder={'Senha*'}
-                    pattern = '/[0-9a-zA-Z]{6,}/'
+                    // pattern = '/[0-9a-zA-Z]{6,}/'
                     senha1
                     type={type}
                     autoComplete={'password'}

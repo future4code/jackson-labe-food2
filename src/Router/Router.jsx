@@ -11,8 +11,10 @@ import EditAddress from '../Screen/User/EditAddress/EditAddress'
 import EditUser from '../Screen/User/EditUser/EditUser'
 import User from '../Screen/User/User'
 import ErrorPage from '../Screen/ErrorPage/ErrorPage'
+import useProtectedPage from '../Hooks/useProtectedPage'
 
 export default function Router(props) {
+    useProtectedPage()
     return (
         <Switch>
             <Route exact path="/">
