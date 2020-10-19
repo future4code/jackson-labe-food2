@@ -2,19 +2,35 @@ import React from 'react'
 import NavBarWithButton from '../../Components/Fixeds/Header/NavBarWithButton'
 import useAxios from '../../Hooks/useAxios'
 import { useEffect, useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 import { goToHome } from '../../Router/Coordinator'
 import CardRestaurant from '../../Components/CardRestaurant/CardRestaurant'
 import CardMenu from '../../Components/CardMenu/CardMenu'
 import PopupAmount from '../../Components/PopupAmount/PopupAmount'
 import { CardPopup, Main } from './styled'
+import axios from 'axios'
 
 export default function Restaurant(props) {
+    const [detail, setDetail] = useState()
     const [active, setActive] = useState(false)
-    const [products, setProducts] = useState([{ id: "", quantity: "" }])
-
+    const [products, setProducts] = useState()
+    const pathParams = useParams()
     const { token } = useAxios()
     const history = useHistory()
+
+    const getDetail = () => {
+        axios.get(`https://us-central1-missao-newton.cloudfunctions.net/fourFoodB/restaurants/${pathParams.restaurantId}`, {
+            headers: {
+                auth: token
+            }
+        }).then((response) => {
+            setDetail(response.data.restaurant)
+            setProducts(response.data.restaurant.products)
+        }).catch((error) => {
+            console.log(error)
+            console.log(pathParams.id)
+        })
+    }
 
     const activePopup = (id) => {
         setActive(!false)
@@ -23,14 +39,11 @@ export default function Restaurant(props) {
     }
     const inactivePopup = (id) => {
         setActive(!true)
-        setProducts(id)
     }
 
-    React.useEffect(() => {
-        props.getDetail()
-        // props.getRestaurants()
-        console.log(products.id)
-    }, [products])
+    useEffect(() => {
+        getDetail()
+    }, [])
 
     return (
         <>
@@ -39,15 +52,16 @@ export default function Restaurant(props) {
 
                 <>
                     <div>
-                        <CardRestaurant
-                            logoRestaurant={props.detail.logoUrl}
-                            nameRestaurant={props.detail.name}
-                            deliveryTime={props.detail.deliveryTime}
-                            shipping={props.detail.shipping}
-                            address={props.detail.address}
-                        />
+                        {detail &&
+                            <CardRestaurant
+                                logoRestaurant={detail.logoUrl}
+                                nameRestaurant={detail.name}
+                                deliveryTime={detail.deliveryTime}
+                                shipping={detail.shipping}
+                                address={detail.address}
+                            />}
                         <>
-                            {props.products.map((product) => {
+                            {products && products.map((product) => {
                                 return (
                                     <CardMenu
                                         productName={product.name}

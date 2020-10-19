@@ -82,10 +82,11 @@ export default function SignUpAddressForm(props) {
                     placeholder={'Complemento'}
                     type='text'
                     autoComplete={'complemento'}
+                    required={false}
                 />
                 <Red
-                nameButton="Salvar"
-            />
+                    nameButton="Salvar"
+                />
             </form>
         </main>
     )
